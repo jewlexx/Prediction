@@ -1,6 +1,9 @@
 use rand::Rng;
 use spinners_rs::{Spinner, Spinners};
-use std::io::{stdin, stdout, Write};
+use std::{
+    io::{stdin, stdout, Write},
+    thread, time,
+};
 
 const BALL_OPTIONS: [&str; 20] = [
     "It is certain",
@@ -39,6 +42,10 @@ fn main() {
     stdin.read_line(&mut String::new()).unwrap();
 
     let sp = Spinner::new(Spinners::Dots9, "Divining your answer...".into());
+    thread::sleep(time::Duration::from_millis({
+        let mut rng = rand::thread_rng();
+        rng.gen_range(500..2000)
+    }));
 
     let answer_i = rand_in_range(0, (BALL_OPTIONS.len() - 1).try_into().unwrap());
     let answer = BALL_OPTIONS[answer_i as usize];
