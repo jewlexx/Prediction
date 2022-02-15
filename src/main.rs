@@ -52,7 +52,7 @@ fn main() {
 
     sp.stop_with_message(format!("Magic 8 ball says: {}\n\n", answer));
 
-    print!("Press any key to exit...");
+    print!("Press Enter to exit...");
     stdout.flush().expect("Failed to flush stdout");
     stdin.read_line(&mut String::new()).unwrap();
 }
