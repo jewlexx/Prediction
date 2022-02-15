@@ -1,6 +1,6 @@
 use rand::Rng;
 use spinners_rs::{Spinner, Spinners};
-use std::io::stdin;
+use std::io::{stdin, stdout, Write};
 
 const BALL_OPTIONS: [&str; 20] = [
     "It is certain",
@@ -31,8 +31,12 @@ fn rand_in_range(min: i32, max: i32) -> i32 {
 }
 
 fn main() {
+    let mut stdout = stdout();
+    let stdin = stdin();
+
     print!("What would you like to know? ");
-    stdin().read_line(&mut String::new()).unwrap();
+    stdout.flush().expect("Failed to flush stdout");
+    stdin.read_line(&mut String::new()).unwrap();
 
     let sp = Spinner::new(Spinners::Dots9, "Divining your answer...".into());
 
@@ -40,4 +44,8 @@ fn main() {
     let answer = BALL_OPTIONS[answer_i as usize];
 
     sp.stop_with_message(format!("Magic 8 ball says: {}", answer));
+
+    print!("Press any key to exit...");
+    stdout.flush().expect("Failed to flush stdout");
+    stdin.read_line(&mut String::new()).unwrap();
 }
