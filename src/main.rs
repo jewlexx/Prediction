@@ -43,7 +43,7 @@ fn main() {
     let answer_i = rand_in_range(0, (BALL_OPTIONS.len() - 1).try_into().unwrap());
     let answer = BALL_OPTIONS[answer_i as usize];
 
-    sp.stop_with_message(format!("Magic 8 ball says: {}", answer));
+    sp.stop_with_message(format!("Magic 8 ball says: {}\n\n", answer));
 
     print!("Press any key to exit...");
     stdout.flush().expect("Failed to flush stdout");
